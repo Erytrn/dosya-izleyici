@@ -12,8 +12,8 @@ import (
 )
 
 // İZLENECEK KLASÖR: "." koyarsan programın çalıştığı klasörü izler.
-const watchDir = "." 
-const debounceTime = 500 * time.Millisecond 
+const watchDir = "."
+const debounceTime = 500 * time.Millisecond
 
 func main() {
 	watcher, err := fsnotify.NewWatcher()
@@ -36,9 +36,8 @@ func main() {
 				// Sadece YAZMA veya OLUŞTURMA olayları
 				if event.Op&fsnotify.Write == fsnotify.Write || event.Op&fsnotify.Create == fsnotify.Create {
 					
-					// FİLTRELEME: .txt dosyalarını test edelim (görmen kolay olsun diye .txt yaptım)
-					// Sadece .js ve .py dosyalarındaki değişimleri yakala
-if strings.HasSuffix(event.Name, ".js") || strings.HasSuffix(event.Name, ".py") {
+					// FİLTRELEME: Sadece .js ve .py dosyalarındaki değişimleri yakala
+					if strings.HasSuffix(event.Name, ".js") || strings.HasSuffix(event.Name, ".py") {
 						log.Println("Değişiklik algılandı:", event.Name)
 
 						if timer != nil {
@@ -60,7 +59,6 @@ if strings.HasSuffix(event.Name, ".js") || strings.HasSuffix(event.Name, ".py") 
 	}()
 
 	// Klasörü izleyiciye ekle
-	// Alt klasörleri de kapsamak için basit bir döngü
 	err = filepath.Walk(watchDir, func(path string, info os.FileInfo, err error) error {
 		if info.IsDir() {
 			return watcher.Add(path)
