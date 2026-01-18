@@ -13,7 +13,7 @@ Bu proje, belirlenen bir dizindeki dosya değişikliklerini (oluşturma, silme, 
 Proje, profesyonel geliştirme standartlarına uygun olarak modüler bir yapıda tasarlanmıştır:
 
 ```text
-dosya-izleyici/
+proje-root/
 ├── 📂 src/             # Kaynak kodlar (Source Code)
 │   ├── main.go         # Ana uygulama dosyası
 │   ├── go.mod          # Modül tanımları
